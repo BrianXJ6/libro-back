@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Services\StudentService;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\SimpleStudentResource;
@@ -74,9 +75,15 @@ class StudentController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param \App\Models\Student $student
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(student $student)
+    public function destroy(Student $student): JsonResponse
     {
-        //
+        $student->delete();
+
+        return new JsonResponse(status: JsonResponse::HTTP_NO_CONTENT);
     }
 }
