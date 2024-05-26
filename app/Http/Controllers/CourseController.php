@@ -52,11 +52,18 @@ class CourseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified course in storage.
+     *
+     * @param \App\Http\Requests\UpdateCourseRequest $request
+     * @param \App\Models\Course $course
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course): JsonResource
     {
-        //
+        $course->update($request->getData()->toArray());
+
+        return SimpleCourseResource::make($course);
     }
 
     /**
