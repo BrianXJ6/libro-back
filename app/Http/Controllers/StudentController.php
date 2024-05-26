@@ -59,7 +59,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified student in storage.
      *
      * @param \App\Http\Requests\UpdateStudentRequest $request
      * @param \App\Models\Student $student
@@ -74,7 +74,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified student from storage.
      *
      * @param \App\Models\Student $student
      *
