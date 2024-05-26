@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Services\CourseService;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Resources\SimpleCourseResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class CourseController extends Controller
 {
+    /**
+     * Create a new CourseController instance
+     *
+     * @param \App\Services\CourseService $service
+     */
+    public function __construct(private CourseService $service)
+    {
+        // ...
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -17,11 +30,17 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created course in storage.
+     *
+     * @param \App\Http\Requests\StoreCourseRequest $request
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function store(StoreCourseRequest $request)
+    public function store(StoreCourseRequest $request): JsonResource
     {
-        //
+        $course = $this->service->entity->create($request->getData()->allExceptNulls());
+
+        return SimpleCourseResource::make($course);
     }
 
     /**
