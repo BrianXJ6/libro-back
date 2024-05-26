@@ -44,11 +44,15 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified course.
+     *
+     * @param \App\Models\Course $course
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function show(Course $course)
+    public function show(Course $course): JsonResource
     {
-        //
+        return SimpleCourseResource::make($course);
     }
 
     /**
