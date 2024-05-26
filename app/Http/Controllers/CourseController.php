@@ -23,11 +23,13 @@ class CourseController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the courses.
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function index()
+    public function index(): JsonResource
     {
-        //
+        return SimpleCourseResource::collection($this->service->entity->all());
     }
 
     /**
