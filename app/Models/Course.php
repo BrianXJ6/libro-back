@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Support\ORM\BaseSimpleModel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Course extends BaseSimpleModel
 {
@@ -15,4 +16,12 @@ class Course extends BaseSimpleModel
         'title',
         'description',
     ];
+
+    /**
+     * The students that belong to the course.
+     */
+    public function students(): BelongsToMany
+    {
+        return $this->belongsToMany(Student::class)->using(Enrollment::class);
+    }
 }

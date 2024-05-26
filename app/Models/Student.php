@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\StudentSexEnum;
 use App\Support\ORM\BaseSimpleModel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends BaseSimpleModel
 {
@@ -29,5 +30,13 @@ class Student extends BaseSimpleModel
         return [
             'sex' => StudentSexEnum::class,
         ];
+    }
+
+    /**
+     * The courses that belong to the student.
+     */
+    public function courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class)->using(Enrollment::class);
     }
 }
