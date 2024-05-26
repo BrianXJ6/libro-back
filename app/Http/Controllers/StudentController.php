@@ -46,11 +46,15 @@ class StudentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified student.
+     *
+     * @param \App\Models\Student $student
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function show(student $student)
+    public function show(Student $student): JsonResource
     {
-        //
+        return SimpleStudentResource::make($student);
     }
 
     /**
