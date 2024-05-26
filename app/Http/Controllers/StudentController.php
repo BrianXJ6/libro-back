@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\student;
+use App\Models\Student;
 use App\Services\StudentService;
 use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdatestudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\SimpleStudentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -53,10 +53,17 @@ class StudentController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param \App\Http\Requests\UpdateStudentRequest $request
+     * @param \App\Models\Student $student
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function update(UpdatestudentRequest $request, student $student)
+    public function update(UpdateStudentRequest $request, Student $student): JsonResource
     {
-        //
+        $student->update($request->getData()->toArray());
+
+        return SimpleStudentResource::make($student);
     }
 
     /**
