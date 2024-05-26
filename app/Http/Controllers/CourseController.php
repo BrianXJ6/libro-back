@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Services\CourseService;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Resources\SimpleCourseResource;
@@ -71,10 +72,16 @@ class CourseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified course from storage.
+     *
+     * @param \App\Models\Course $course
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Course $course)
+    public function destroy(Course $course): JsonResponse
     {
-        //
+        $course->delete();
+
+        return new JsonResponse(status: JsonResponse::HTTP_NO_CONTENT);
     }
 }
