@@ -21,11 +21,13 @@ class EnrollmentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the enrollment.
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function index()
+    public function index(): JsonResource
     {
-        //
+        return SimpleEnrollmentResource::collection($this->service->entity->all());
     }
 
     /**
