@@ -12,13 +12,13 @@ class CrudStudentDto extends BaseDto
      *
      * @param string $name
      * @param string $email
-     * @param string $birth
+     * @param int $age
      * @param StudentSexEnum|null $sex
      */
     public function __construct(
         public readonly string $name,
         public readonly string $email,
-        public readonly string $birth,
+        public readonly int $age,
         public readonly ?StudentSexEnum $sex,
     ) {
         // ...

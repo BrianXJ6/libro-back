@@ -20,7 +20,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:100', Rule::unique(Student::class)],
-            'birth' => ['required', 'date'],
+            'age' => ['required', 'integer', 'min:1'],
             'sex' => ['sometimes', Rule::enum(StudentSexEnum::class)],
         ];
     }

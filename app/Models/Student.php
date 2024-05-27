@@ -16,7 +16,7 @@ class Student extends BaseSimpleModel
     protected $fillable = [
         'name',
         'email',
-        'birth',
+        'age',
         'sex',
     ];
 
@@ -28,6 +28,7 @@ class Student extends BaseSimpleModel
     protected function casts(): array
     {
         return [
+            'age' => 'integer',
             'sex' => StudentSexEnum::class,
         ];
     }

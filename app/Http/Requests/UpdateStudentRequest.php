@@ -20,7 +20,7 @@ class UpdateStudentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:100', Rule::unique(Student::class)->ignore($this->student->id)],
-            'birth' => ['required', 'date'],
+            'age' => ['required', 'integer', 'min:1'],
             'sex' => ['sometimes', 'nullable', Rule::enum(StudentSexEnum::class)],
         ];
     }
