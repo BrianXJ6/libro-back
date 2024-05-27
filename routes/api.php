@@ -10,6 +10,6 @@ Route::get('/', fn () => 'Hello World');
 Route::get('relatorio', ReportController::class);
 
 // API resources...
-Route::apiResource('/cursos', CourseController::class)->parameters(['' => 'course']);
-Route::apiResource('/alunos', StudentController::class)->parameters(['' => 'student']);
+Route::apiResource('/cursos', CourseController::class)->parameters(['cursos' => 'course']);
+Route::apiResource('alunos', StudentController::class)->parameters(['alunos' => 'student']);
 Route::apiResource('matriculas', EnrollmentController::class)->parameters(['matriculas' => 'enrollment']);
