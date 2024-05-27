@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Enrollment;
 use App\Services\EnrollmentService;
 use App\Http\Requests\StoreEnrollmentRequest;
 use App\Http\Resources\SimpleEnrollmentResource;
@@ -51,11 +51,18 @@ class EnrollmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified enrollment in storage.
+     *
+     * @param \App\Http\Requests\StoreEnrollmentRequest $request
+     * @param \App\Models\Enrollment $enrollment
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function update(Request $request, string $id)
+    public function update(StoreEnrollmentRequest $request, Enrollment $enrollment): JsonResource
     {
-        //
+        $enrollment->update($request->getData()->toArray());
+
+        return SimpleEnrollmentResource::make($enrollment);
     }
 
     /**
