@@ -7,14 +7,7 @@ use App\Http\Controllers\EnrollmentController;
 
 Route::get('/', fn () => 'Hello World');
 
-Route::prefix('cursos')->controller(CourseController::class)->group(function () {
-    Route::apiResource('/', CourseController::class)->parameters(['' => 'course']);
-    // ...
-});
-
-Route::prefix('alunos')->controller(StudentController::class)->group(function () {
-    Route::apiResource('/', StudentController::class)->parameters(['' => 'student']);
-    // ...
-});
-
+// API resources...
+Route::apiResource('/cursos', CourseController::class)->parameters(['' => 'course']);
+Route::apiResource('/alunos', StudentController::class)->parameters(['' => 'student']);
 Route::apiResource('matriculas', EnrollmentController::class)->parameters(['matriculas' => 'enrollment']);
