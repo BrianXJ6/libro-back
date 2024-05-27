@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Services\StudentService;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\IndexStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\SimpleStudentResource;
@@ -25,11 +26,13 @@ class StudentController extends Controller
     /**
      * Display a listing of the students.
      *
+     * @param \App\Http\Requests\IndexStudentRequest $request
+     *
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function index(): JsonResource
+    public function index(IndexStudentRequest $request): JsonResource
     {
-        return SimpleStudentResource::collection($this->service->entity->all());
+        return SimpleStudentResource::collection($this->service->index($request->getData()));
     }
 
     /**
