@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use Illuminate\Http\JsonResponse;
 use App\Services\EnrollmentService;
 use App\Http\Requests\StoreEnrollmentRequest;
 use App\Http\Resources\SimpleEnrollmentResource;
@@ -72,10 +73,16 @@ class EnrollmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified enrollment from storage.
+     *
+     * @param \App\Models\Enrollment $enrollment
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Enrollment $enrollment)
+    public function destroy(Enrollment $enrollment): JsonResponse
     {
-        //
+        $enrollment->delete();
+
+        return new JsonResponse(status: JsonResponse::HTTP_NO_CONTENT);
     }
 }
