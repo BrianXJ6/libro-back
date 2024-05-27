@@ -43,11 +43,15 @@ class EnrollmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified enrollment.
+     *
+     * @param \App\Models\Enrollment $enrollment
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function show(string $id)
+    public function show(Enrollment $enrollment): JsonResource
     {
-        //
+        return SimpleEnrollmentResource::make($enrollment);
     }
 
     /**
@@ -68,7 +72,7 @@ class EnrollmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Enrollment $enrollment)
     {
         //
     }
