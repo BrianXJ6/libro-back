@@ -10,4 +10,17 @@ enum StudentSexEnum: string
 
     case M = 'm';
     case F = 'f';
+
+    /**
+     * Get label for option
+     *
+     * @return string
+     */
+    public function getLabels(): string
+    {
+        return match ($this) {
+            $this::M => 'Masculino',
+            $this::F => 'Feminino',
+        };
+    }
 }

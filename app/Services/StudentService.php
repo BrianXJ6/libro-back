@@ -30,6 +30,7 @@ class StudentService
         $query = $this->entity->newQuery();
         $query->when($data->name, fn ($query) => $query->where('name', 'LIKE', "%$data->name%"));
         $query->when($data->email, fn ($query) => $query->where('email', 'LIKE', "%$data->email%"));
+        $query->latest();
 
         return $query->get();
     }
