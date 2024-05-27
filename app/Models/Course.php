@@ -22,6 +22,6 @@ class Course extends BaseSimpleModel
      */
     public function students(): BelongsToMany
     {
-        return $this->belongsToMany(Student::class)->using(Enrollment::class);
+        return $this->belongsToMany(Student::class, Enrollment::class)->using(Enrollment::class);
     }
 }
